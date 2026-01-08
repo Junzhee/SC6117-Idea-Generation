@@ -51,7 +51,7 @@ class Analyzer:
             # We don't need to worry too much about input truncation here 
             # because the calling functions manage the context size.
             response = self.client.chat.completions.create(
-                model="deepseek-reasoner", 
+                model="deepseek-chat", 
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt},

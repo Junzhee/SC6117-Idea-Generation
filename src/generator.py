@@ -197,7 +197,7 @@ You can be flexible, if you think the things is too noncense, you can provide yo
         try:
             print("Sending request to DeepSeek API...")
             response = self.client.chat.completions.create(
-                model="deepseek-reasoner",
+                model="deepseek-chat",
                 messages=messages,
                 stream=False,
                 temperature=0.7

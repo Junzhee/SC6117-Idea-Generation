@@ -6,91 +6,73 @@
     {
       "aspect": "Price and value perception issues",
       "sentiment_score": -0.9,
-      "summary": "Users criticize the product for being overpriced, with frequent price drops causing frustration among early buyers. Many feel the features do not justify the cost, especially compared to competitors offering similar or better functionality at lower prices. There are complaints about lack of price protection and perceived 'faith tax' or 'IQ tax'.",
+      "summary": "Users criticize the product for being overpriced, with frequent price drops causing frustration among early buyers. Many feel the price does not match the functionality, especially compared to competitors offering similar features at lower costs. The transparent version is seen as a significant markup for aesthetics without practical benefits.",
       "top_representative_comments": [
         "首发6000买的，[笑哭R]无力吐槽，两个月降2000",
-        "落后一代的配置，顶流的价格，谁给的勇气"
+        "大疆5k和别家2k 3k的功能一样 ，大疆不就性价比很低吗？其他家更高档的4k5k产品不应该更好卖吗"
       ]
     },
     {
-      "aspect": "Poor after-sales service and support",
-      "sentiment_score": -0.95,
-      "summary": "Numerous users report terrible after-sales experiences, including unresponsive or robotic customer service, lengthy repair times, and difficulty getting issues resolved. Complaints span multiple brands mentioned in comments, indicating a widespread industry problem that erodes trust.",
-      "top_representative_comments": [
-        "科沃斯售后超级垃圾，千万不要买，一个产品连售后都处理不好，做一次性服务有什么用，垃圾！！！谁买谁后悔,不要给自己找麻烦，就不要买科沃斯！！！",
-        "售后很垃圾…投诉他们天津的总公司人直接让政府回我不调节[失望R]以后不会买他们家了，卖方权利大于购买方"
-      ]
-    },
-    {
-      "aspect": "Product reliability and frequent malfunctions",
+      "aspect": "Product quality and reliability problems",
       "sentiment_score": -0.85,
-      "summary": "Users experience frequent breakdowns and technical issues, such as robots getting stuck, failing to return to base, sensor problems, and components failing shortly after purchase. This leads to frustration and loss of confidence in the product's durability.",
+      "summary": "Numerous reports of the product failing quickly, with issues like malfunctioning after a short period, poor build quality, and high failure rates. Users describe it as prone to breaking, requiring frequent repairs, and having a short lifespan, leading to dissatisfaction and returns.",
       "top_representative_comments": [
         "千万别买追觅 很垃圾 x40proultra超薄版，顶配，1天就坏!!!而且售后非常艰辛!!!大家千万避雷",
         "质量是真不好 我家买回来经历了数次上门维修以及返厂维修"
       ]
     },
     {
+      "aspect": "Poor after-sales service and customer support",
+      "sentiment_score": -0.95,
+      "summary": "Users express extreme frustration with after-sales service, describing it as unresponsive, slow, and ineffective. Complaints include difficulty reaching human support, long repair times, and lack of resolution for issues. This is a major pain point across multiple brands mentioned in the comments.",
+      "top_representative_comments": [
+        "科沃斯售后超级垃圾，千万不要买，一个产品连售后都处理不好，做一次性服务有什么用，垃圾！！！谁买谁后悔,不要给自己找麻烦，就不要买科沃斯！！！",
+        "售后很垃圾…投诉他们天津的总公司人直接让政府回我不调节[失望R]以后不会买他们家了，卖方权利大于购买方"
+      ]
+    },
+    {
       "aspect": "Inadequate cleaning performance",
       "sentiment_score": -0.8,
-      "summary": "Many users find the cleaning effectiveness unsatisfactory, with complaints about leaving water marks, failing to pick up all debris, and not reaching corners or edges properly. Some note that the product requires pre-cleaning or manual touch-ups, defeating its purpose.",
+      "summary": "Users report that the product does not clean effectively, with issues like leaving dirt behind, poor edge cleaning, and inability to handle specific messes like pet hair or liquids. Some find it no better than cheaper alternatives, leading to disappointment in its core function.",
       "top_representative_comments": [
         "早退了我，这东西拖不干净呀，不是活水，还有就是你用洗地机拖干净了，用这个机器人维护，就是脱裤子放屁[笑哭R]",
-        "真的能扫这么干净吗"
+        "真的很不错  就是有一点  拖地有点不干净  其余都特别好  尤其是扫边边角角    真的特别好"
       ]
     },
     {
       "aspect": "Excessive noise during operation",
       "sentiment_score": -0.75,
-      "summary": "Users complain about high noise levels, particularly during drying cycles or when using maximum suction, which disrupts daily activities and makes the product unsuitable for use when people are home or sleeping.",
+      "summary": "Complaints about the product being too loud, disrupting daily activities, and causing annoyance, especially in homes with children or pets. Users compare it unfavorably to other models that are quieter, affecting its usability in quiet environments.",
       "top_representative_comments": [
         "石头最大的问题就是，工作时太吵了，小孩在家都不敢用",
         "烘干五个多小时，搞卫生扫加拖也是五个多小时[笑哭R][笑哭R]一整天它都在吵，现在大半夜了还在嗡嗡嗡烘干，完全是低频噪音[笑哭R]"
       ]
     },
     {
-      "aspect": "Hair and debris entanglement problems",
+      "aspect": "Hair and debris entanglement issues",
       "sentiment_score": -0.7,
-      "summary": "Despite claims of anti-tangle features, users report frequent hair and debris wrapping around brushes and wheels, requiring manual cleaning and reducing efficiency. This is a common pain point across multiple brands.",
+      "summary": "Users highlight problems with the product getting tangled with hair, pet fur, and other debris, requiring frequent manual cleaning. This reduces its convenience and increases maintenance effort, particularly for households with long-haired individuals or pets.",
       "top_representative_comments": [
         "逆天[笑哭R][笑哭R]追觅石头4年前的边刷就是这样的。缠绕很严重。现在石头那种边刷基本缠的少了",
         "我想知道它能避开狗屎吗"
       ]
     },
     {
-      "aspect": "Long cleaning and drying times",
+      "aspect": "Long cleaning times and inefficiency",
       "sentiment_score": -0.65,
-      "summary": "Users find the time required for cleaning cycles excessively long, with some reports of multiple hours for standard tasks. Drying times are also criticized for being prolonged, tying up the machine and increasing energy consumption.",
+      "summary": "Criticism focuses on the product taking too long to complete cleaning tasks, with some users reporting hours for small areas. This inefficiency makes it impractical for daily use and frustrates users who expect faster performance.",
       "top_representative_comments": [
         "扫两遍拖一遍，花了6个多小时你信吗[笑哭R]",
-        "清洁31m用了快1个小时？？？？"
+        "34平工作1个小时认真的嘛[吧唧R]"
       ]
     },
     {
-      "aspect": "Marketing and influencer mistrust",
-      "sentiment_score": -0.9,
-      "summary": "There is widespread skepticism towards marketing and influencer endorsements, with users feeling overwhelmed by sponsored content, fake reviews, and difficulty discerning genuine feedback. This erodes confidence in purchasing decisions.",
+      "aspect": "Design flaws and durability concerns",
+      "sentiment_score": -0.8,
+      "summary": "Users point out specific design issues such as the transparent casing being prone to scratches, poor durability, and impractical features. The aesthetic choices are criticized for not adding functional value and potentially compromising the product's longevity and usability.",
       "top_representative_comments": [
-        "营销太严重了，还有商家互相刷差评，一群大人夸大购物体验，真的太难了。我现在买东西完全靠从朋友和自己总结，不再相信这些博主的推荐了。我现在已经失去辨别的能力了[笑哭R][笑哭R]",
-        "那叫推广，不叫测评"
-      ]
-    },
-    {
-      "aspect": "Battery and charging issues",
-      "sentiment_score": -0.6,
-      "summary": "Users report problems with battery life, such as not holding charge, requiring frequent recharging during tasks, and some brands allegedly locking batteries after warranty to force paid replacements.",
-      "top_representative_comments": [
-        "过保后差不多电池也不行了，为了防止💥？然后他给你锁电池，你充不进去电，只能去售后，但因为你过保了，所以就要花钱去换，了解他们的手法了吧，就很恶心",
-        "石头的耗电也很快，不知道现在新版更新了没有"
-      ]
-    },
-    {
-      "aspect": "Design and practicality flaws",
-      "sentiment_score": -0.7,
-      "summary": "Criticisms include impractical design choices, such as transparent casings that show dirt and are hard to clean, bulky bases that don't fit in cabinets, and components that are difficult to maintain or replace.",
-      "top_representative_comments": [
-        "大疆romo的结构工程师估计背后把工业设计师都问候了一遍了。透明壳的设计完全为了外观上的标新立异，不提供任何功能上的优势，还早成结构、注塑工艺上的难度。",
-        "透明的 一看全是灰粘在里面 不难受吗[微笑R]"
+        "以后发黄 划痕 起雾就不好看了 水平差不多 为了透明壳多两千[笑哭R]",
+        "大疆romo的结构工程师估计背后把工业设计师都问候了一遍了。透明壳的设计完全为了外观上的标新立异，不提供任何功能上的优势，还早成结构、注塑工艺上的难度。"
       ]
     }
   ],
@@ -98,19 +80,19 @@
     {
       "topic": "Comparison and recommendations for new robotic vacuum cleaner models during 618 shopping festival",
       "controversy_level": "Low",
-      "thread_summary": "The original poster provides a detailed comparison and recommendations for four robotic vacuum cleaner models from different brands (Roborock P10s Pro, Dreame S30 Pro Ultra, Dreame X40 Pro, Ecovacs T30 Pro) during the 618 shopping festival, aiming to help consumers avoid pitfalls. The post includes timestamps for specific model discussions and numerous hashtags related to home cleaning, technology, and brand mentions. No user comments are available in the provided data, so community reaction cannot be assessed. The content appears informative and promotional rather than controversial, focusing on product features and value propositions. The absence of comments suggests either a new thread or limited engagement, with no visible complaints or arguments. The post targets consumers seeking guidance on smart home cleaning devices, emphasizing convenience and technology benefits. The detailed structure and hashtag usage indicate an effort to maximize visibility and relevance in social media searches.",
+      "thread_summary": "The original poster provides a detailed comparison and recommendations for four robotic vacuum cleaner models from brands like Roborock, Dreame, and Ecovacs, specifically targeting the 618 shopping festival. The post includes timestamps for model recommendations and uses numerous hashtags related to home cleaning and technology. Since no user comments are provided, there is no community reaction, complaints, or arguments to analyze, making the controversy level low.",
       "note_id": "660301110000000012022277"
     },
     {
       "topic": "2024 robotic vacuum cleaner selection and brand comparison",
       "controversy_level": "High",
-      "thread_summary": "The original post presents a comprehensive 2024 robotic vacuum cleaner comparison video covering 5 major brands and 17 models, analyzing features like sweeping, mopping, edge cleaning, navigation, obstacle avoidance, base stations, and smart features. The community reaction reveals significant consumer frustration: users express exhaustion with the complex research required for purchases, confusion about technical specifications, and widespread complaints about poor after-sales service across multiple brands (specifically mentioning negative experiences with Ecovacs and Dreame). Several users report product failures shortly after purchase and difficult warranty processes, while others criticize brands for incremental feature releases to maximize profits. The discussion highlights distrust in influencer marketing, concerns about fake reviews, and a general sentiment that consumers must become experts to avoid pitfalls, with some users resorting to personal experience and friend recommendations over professional reviews.",
+      "thread_summary": "The original post presents a comprehensive 2024 robotic vacuum cleaner comparison video covering 5 major brands and 17 models, analyzing features like sweeping, mopping, edge cleaning, navigation, obstacle avoidance, base stations, and smart features. The community reaction reveals significant consumer frustration: 1) Users express exhaustion with the complex research required for purchases in China, comparing it to medical decisions. 2) Multiple brands (specifically mentioned: Roborock, Dreame, Ecovacs) receive complaints about poor after-sales service and product reliability. 3) Consumers criticize brands for intentionally withholding features to drive incremental upgrades, similar to smartphone marketing. 4) There's widespread skepticism toward influencer recommendations due to perceived excessive marketing and fake reviews. 5) Users report difficulty choosing despite comparisons, as all brands seem to have negative feedback. 6) Some share personal negative experiences with specific high-end models failing quickly. 7) Others mention positive resolution experiences (like refunds) but still seek alternatives. 8) The overall sentiment suggests consumers rely more on personal research and peer recommendations than professional reviews.",
       "note_id": "667aaf49000000001c02567f"
     },
     {
-      "topic": "DJI Romo robotic vacuum cleaner user experience and product evaluation",
+      "topic": "DJI Romo扫地机器人用户体验与产品评价",
       "controversy_level": "Low",
-      "thread_summary": "The original poster shares a positive review of switching from a Roborock G10S to DJI Romo, highlighting significant improvements in noise reduction, obstacle avoidance, cleaning efficiency, and climbing ability. The community responds with overwhelmingly positive reactions, praising the design aesthetics, expressing purchase intent, and sharing related experiences. No major complaints or arguments are present in the discussion, with comments focusing on product features, personal anecdotes, and minor tangential discussions about home decor and household dynamics.",
+      "thread_summary": "原帖作者详细分享了自己从石头G10S更换为大疆Romo扫地机器人的正面体验，重点强调了噪音控制显著改善、智能避障能力提升、清扫效率高、越障能力强和外观设计优秀等优点，并表达了对大疆品牌的认可。社区反应整体积极，用户主要关注点包括：1）产品外观设计受到普遍称赞；2）用户讨论产品迭代和购买时机，有人建议等待后续版本；3）有用户询问产品能否避开宠物粪便等具体功能；4）部分评论转向家庭责任分担等社会话题；5）价格信息被提及，双十一期间有优惠；6）宠物家庭用户分享使用体验；7）有用户确认这是大疆第二代产品；8）整体讨论氛围友好，无明显负面争议或激烈辩论。",
       "note_id": "68d36e0c000000000e00c3f9"
     }
   ]
