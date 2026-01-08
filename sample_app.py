@@ -37,25 +37,45 @@ def main():
     st.divider()
 
     # --- Sidebar: Configuration & Status ---
+    # --- 找到 main() 函数中的 Sidebar 部分 ---
     with st.sidebar:
         st.header("⚙️ Configuration")
         
-        # 1. API Status Check
-        api_key = os.getenv("DEEPSEEK_API_KEY")
-        if api_key:
-            st.success("✅ DeepSeek API Key Detected")
-        else:
-            st.error("❌ API Key Missing in .env")
-            st.warning("AI Generation features will not work.")
+        # ... (保留 API Key 检查代码) ...
 
-        # 2. Data Source Selection
-        st.subheader("📂 Data Source")
+        # 2. 动态数据源选择
+        st.subheader("📂 Search & Select Product")
         data_dir = "data"
-        # Hardcoded sample files as per instruction
-        comments_file = "sample_大疆扫地机器人_search_comments_2025-11-22.csv"
-        contents_file = "sample_大疆扫地机器人_search_contents_2025-11-22.csv"
         
-        st.caption(f"Target: {comments_file}")
+        # 获取 data 目录下所有的 csv 文件名 
+        try:
+            all_files = [f for f in os.listdir(data_dir) if f.endswith('.csv')]
+            # 提取产品名称（假设文件名格式一致，如：9_大疆扫地机器人_...）
+            # 这里我们可以做一个简单的搜索过滤
+            search_query = st.text_input("🔍 Search Product", placeholder="输入关键词，如：大疆")
+            
+            # 过滤出匹配的文件
+            filtered_files = [f for f in all_files if search_query in f]
+            
+            if filtered_files:
+                # 找到对应的 comments 文件和 contents 文件
+                # 建议逻辑：让用户选一个，系统自动匹配对应的两个文件
+                selected_file = st.selectbox("Select Dataset", filtered_files)
+                
+                # 简单的匹配逻辑：假设组员提供的文件成对出现
+                comments_file = selected_file
+                # 寻找同名前缀的 contents 文件
+                prefix = selected_file.split('_search_')[0]
+                contents_file = f"{prefix}_search_contents_2025-11-22.csv" 
+            else:
+                st.warning("No matching data found.")
+                st.stop()
+                
+        except Exception as e:
+            st.error(f"Error accessing data folder: {e}")
+            st.stop()
+
+        st.caption(f"Currently Analyzing: {comments_file}")
 
     # --- Step 1: Data Loading ---
     loader = DataLoader(data_dir=data_dir)

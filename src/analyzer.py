@@ -3,6 +3,7 @@ import pandas as pd
 class Analyzer:
     def __init__(self, comments_df):
         self.comments_df = comments_df
+        
 
     def get_pain_points(self, limit=20):
         """
