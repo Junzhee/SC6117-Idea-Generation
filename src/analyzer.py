@@ -51,7 +51,7 @@ class Analyzer:
             # We don't need to worry too much about input truncation here 
             # because the calling functions manage the context size.
             response = self.client.chat.completions.create(
-                model="deepseek-chat", 
+                model="deepseek-reasoner", 
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt},
@@ -113,12 +113,12 @@ class Analyzer:
 
         user_prompt = f"""
         Below are high-engagement user comments for a product.
-        Analyze these comments to identify the Top 3-5 Most Criticized Aspects or Pain Points.
+        Analyze these comments to identify the Top Criticized Aspects or Pain Points.
         
         Your goal is to find the "worst" parts of the product experience so that solutions can be proposed later.
         
         For each finding, provide:
-        1. "aspect": The specific negative issue. Write at least 6 points.
+        1. "aspect": The specific negative issue. Write at least eight different and product-specific related points.
         2. "sentiment_score": A float reflecting the severity of the negativity (typically -0.1 to -1.0).
         3. "summary": A detailed explanation of why users are criticizing this.
         4. "top_representative_comments": A list of exactly 2 verbatim comments that best illustrate this specific complaint.
@@ -177,7 +177,7 @@ class Analyzer:
             Provide a JSON summary with:
             1. "topic": The core topic of discussion.
             2. "controversy_level": "Low", "Medium", or "High".
-            3. "thread_summary": A brief summary of the OP's point and the community's reaction, highlighting any major complaints or arguments. Write at least 6 different threads.
+            3. "thread_summary": A brief summary of the OP's point and the community's reaction, highlighting any major complaints or arguments. Write at least 8 different threads.
  
             Output JSON Format:
             {{"topic": "...", "controversy_level": "...", "thread_summary": "..."}}

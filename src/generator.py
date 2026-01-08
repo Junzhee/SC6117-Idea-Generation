@@ -30,10 +30,7 @@ class Generator:
 
     # -------------------- pain_points from aspect --------------------
     def build_pain_points_from_aspects(self, data: dict, max_points: int = 30):
-        """
-        pain_points = key_findings[].aspect (去重)
-        返回格式与旧代码兼容: [{'content': str, 'likes': int}, ...]
-        """
+
         pain_points = []
         seen = set()
 
@@ -56,9 +53,7 @@ class Generator:
         max_comments_per_finding: int = 3,
         max_threads: int = 10
     ) -> str:
-        """
-        把 analyzer.json 尽可能多的信息，压缩成可喂给 LLM 的 evidence 文本块
-        """
+
         parts = []
 
         # meta
@@ -126,57 +121,73 @@ class Generator:
 
         return "\n".join(parts) if parts else "No evidence found in analyzer JSON."
 
-    # -------------------- prompt builder: MUST output 6 modules --------------------
+    # -------------------- prompt builder --------------------
     def _build_prompt(self, pain_points, evidence_text: str):
-        """
-        pain_points: 从 aspect 来（简短）
-        evidence_text: JSON 里尽可能多的信息（summary/评论/热帖/统计）
-        """
-
-        pain_text = "\n".join([f"- {p.get('content', '')}" for p in pain_points[:15]])
+        pain_text = "\n".join([f"- {p.get('content', '')}" for p in pain_points[:20]])
 
         system_content = (
-            "You are an expert Venture Capitalist and Product Manager. "
-            "Your goal is to identify market opportunities and propose a startup concept. "
-            "Write in English only."
+            "You are a world-class Product Strategist and Venture Capitalist (like a YC partner). "
+            "You are analyzing raw market feedback to build a unicorn startup concept. "
+            "Your tone is professional, insightful, and evidence-based. "
+            "Use Markdown formatting heavily (bullet points, bold text) to make the output readable."
         )
 
         user_content = f"""
-You are analyzing the Robot Vacuum market.
+### Context
+You are analyzing the **Robot Vacuum (扫地机器人)** market based on real user feedback.
 
-Pain Points (extracted from JSON key_findings[].aspect):
+### Key Pain Points (from Analysis)
 {pain_text}
 
-Full Evidence (use this heavily; do not ignore it):
-=== EVIDENCE START ===
+### Deep Dive Evidence (Raw Comments & Threads)
 {evidence_text}
-=== EVIDENCE END ===
 
-Task:
-Based ONLY on the evidence above, generate an investor-ready pitch with EXACTLY these 6 modules (same titles and numbering).
-If evidence is insufficient for a module, write "Insufficient evidence in input" for that part rather than inventing facts.
+### Mission
+Based **ONLY** on the evidence above, generate a structured Investment Pitch.
+Do not hallucinate features that users don't need. Solve the specific complaints found in the text.
 
-Output format (STRICT, no extra sections, no tables):
-        1. **Startup Name**: (Catchy and relevant)
-        2. **One-Liner Pitch**: (A compelling value proposition)
-        3. **The Problem**: (Summarize the key pain points you are solving based on the evidence)
-        4. **The Solution**: (Describe the specific features that solve the complaints above)
-        5. **Target Audience**: (Who is most frustrated currently?)
-        6. **differentiation**: (Why is this better than current market leaders like DJI/Roborock?)
-"Write in English only."
+### Output Format Rules (STRICT)
+You must output exactly 6 sections with the specific headers below. Do not generate tables.
+Inside each section, use **Markdown Lists**, **Bold key phrases**, and clear structure.
+You can be flexible, if you think the things is too noncense, you can provide your own reasonable ideas.
 
+1. **Startup Name**: 
+   - Provide a catchy, modern name (English).
+   - *Format*: Just the name and a 1-sentence explanation of the name.
+
+2. **One-Liner Pitch**: 
+   - A single, punchy sentence (< 20 words) describing the value prop.
+   - *Format*: Blockquote this sentence (use >).
+
+3. **The Problem**: 
+   - Don't just list generic issues. Synthesize the "Deep Frustration".
+   - **Must cite specific user complaints** from the evidence (e.g., "Users frequently complain about tangled hair...").
+   - *Format*: Use bullet points. Bold the core pain point (e.g., "**Tangled Hair**: Users are tired of...").
+   - Generate more than 5 points.
+
+4. **The Solution**: 
+   - Propose concrete product features that directly map to the problems above.
+   - Be specific (e.g., instead of "Better AI", say "Vision-based obstacle recognition for cables").
+   - *Format*: Use a bulleted list of features. Use Emoji for each feature (e.g., 🧶 **Anti-Tangle Roller**: ...).
+
+5. **Target Audience**: 
+   - Define the specific persona who is complaining the most (e.g., Pet owners, Parents, Tech enthusiasts).
+   - *Format*: Short description + 3-5 key characteristics in a list.
+
+6. **Differentiation**: 
+   - Why will this win against giants like DJI/Roborock?
+   - Focus on the "Unmet Needs" found in the evidence.
+   - *Format*: A short comparison list.
+
+"Write in English only. Make the content look professional and visually structured."
 """
 
-        # ✅ 修复你原文件这里少逗号的语法错误 :contentReference[oaicite:2]{index=2}
         return [
             {"role": "system", "content": system_content},
             {"role": "user", "content": user_content},
         ]
 
     def generate_pitch_from_json(self, json_path: str):
-        """
-        一步到位：读取 JSON -> aspect pain_points + full evidence -> 生成 6 模块输出
-        """
         data = self.load_analyzer_json(json_path)
         pain_points = self.build_pain_points_from_aspects(data)
         evidence_text = self.build_evidence_text(data)
@@ -186,7 +197,7 @@ Output format (STRICT, no extra sections, no tables):
         try:
             print("Sending request to DeepSeek API...")
             response = self.client.chat.completions.create(
-                model="deepseek-chat",
+                model="deepseek-reasoner",
                 messages=messages,
                 stream=False,
                 temperature=0.7
@@ -198,12 +209,10 @@ Output format (STRICT, no extra sections, no tables):
 
 
 if __name__ == "__main__":
-    # 默认同目录 analyzer.json；你也可以改成绝对路径
-    json_path = "analyzer.json"
+    json_path = "data/analyzer.json"
 
     gen = Generator()
 
-    # 没 key：只打印 evidence 和 prompt 预览，方便你检查“有没有用上全部 JSON”
     if not os.getenv("DEEPSEEK_API_KEY"):
         print("Skipping actual API call: No Key found in .env")
         print("Set DEEPSEEK_API_KEY to run the real test.\n")
