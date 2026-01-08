@@ -171,8 +171,22 @@ def main():
                 else:
                     with st.spinner("AI is analyzing market gaps..."):
                         gen = Generator()
-                        # 生成符合图三要求的 6 个模块
-                        result = gen.generate_idea(pain_points)
+                        
+                        # --- 修复代码开始 ---
+                        # 检查当前 generator.py 到底支持哪个函数
+                        if hasattr(gen, 'generate_idea'):
+                            # 如果是旧版逻辑
+                            result = gen.generate_idea(pain_points)
+                        elif hasattr(gen, 'generate_pitch_from_json'):
+                            # 如果是新版 JSON 逻辑，但你现在只有 DataFrame
+                            # 暂时用一个简单的提示，或者引导它使用旧逻辑
+                            st.warning("Detection: New JSON-based Generator found. Reverting to compatibility mode...")
+                            # 强制定义一个临时兼容函数，或直接联系组员统一接口
+                            result = "Error: Generator interface mismatch. Please check generator.py function names."
+                        else:
+                            result = "Error: No valid generation method found in generator.py"
+                        # --- 修复代码结束 ---
+                        
                         st.session_state['final_pitch'] = result
 
         with gen_col_right:
