@@ -28,6 +28,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 def main():
+    # --- 0. 首先从环境变量获取 API Key ---
+    api_key = os.getenv("DEEPSEEK_API_KEY")
+
     # --- Header ---
     st.title("🚀 InsightFoundry: AI Startup Ideation")
     st.markdown("""
@@ -37,15 +40,19 @@ def main():
     st.divider()
 
     # --- Sidebar: Configuration & Status ---
-    # --- 找到 main() 函数中的 Sidebar 部分 ---
     with st.sidebar:
         st.header("⚙️ Configuration")
         
-        # ... (保留 API Key 检查代码) ...
+        # 1. 检查并显示 API Key 状态 (这里必须定义，否则报错)
+        if api_key:
+            st.success("✅ DeepSeek API Key Detected")
+        else:
+            st.error("❌ API Key Missing in .env")
 
-        # 2. 动态数据源选择
+        # 2. 动态数据源选择 (接着写你之前的搜索逻辑)
         st.subheader("📂 Search & Select Product")
         data_dir = "data"
+
         
         # 获取 data 目录下所有的 csv 文件名 
         try:
