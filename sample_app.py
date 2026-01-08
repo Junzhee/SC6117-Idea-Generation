@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 import pandas as pd
+import json
 from dotenv import load_dotenv
 
 # 引入后端模块
@@ -12,18 +13,18 @@ load_dotenv()
 
 # --- 1. 页面配置 ---
 st.set_page_config(
-    page_title="InsightFoundry AI",
-    page_icon="🛡️",
+    page_title="InsightFoundry AI", 
+    page_icon="🛡️", 
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# --- 2. 深度 UI 定制 (样式美化核心) ---
+# --- 2. 深度 UI 定制 (针对灰色调进行加重) ---
 st.markdown("""
 <style>
     /* 解决左边栏间距问题 */
     [data-testid="stSidebarNav"] { padding-top: 0rem; }
-    .sidebar-title { margin-top: -30px; font-weight: bold; color: #1f3a93; }
+    .sidebar-title { margin-top: -30px; font-weight: bold; color: #1f3a93; font-size: 1.2rem; }
 
     /* 页面大标题居中放大 */
     .main-title {
@@ -36,18 +37,18 @@ st.markdown("""
     }
     .sub-title {
         text-align: center;
-        color: #64748B;
+        color: #475569; /* 加深副标题灰色 */
         font-size: 1.2rem;
         margin-bottom: 2rem;
     }
 
-    /* 指标卡片美化：增加淡色背景与边框 */
+    /* 指标卡片美化：加重背景与边框的灰色 */
     [data-testid="stMetric"] {
-        background-color: #f8fafc;
-        border: 1px solid #e2e8f0;
+        background-color: #f1f5f9; /* 加深背景：从 #f8fafc 改为 #f1f5f9 */
+        border: 1px solid #cbd5e1; /* 加深边框：从 #e2e8f0 改为 #cbd5e1 */
         padding: 15px 20px;
         border-radius: 12px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
 
     /* 指标数值加粗与间距压缩 */
@@ -57,11 +58,12 @@ st.markdown("""
         line-height: 1.1 !important;
         color: #0f172a !important;
     }
+    
+    /* 加深指标标签颜色 */
     [data-testid="stMetricLabel"] {
-        margin-bottom: -12px !important; /* 压缩标签与数字的垂直间距 */
-        font-size: 0.95rem !important;
-        color: #64748b !important;
-        font-weight: 500 !important;
+        margin-bottom: -15px !important;
+        font-size: 1rem !important;
+        color: #475569 !important; /* 加深文字：从 #64748b 改为 #475569 */
     }
 </style>
 """, unsafe_allow_html=True)
@@ -72,18 +74,21 @@ def main():
 
     # --- 3. 侧边栏：配置与搜索 ---
     with st.sidebar:
-        st.markdown('<p class="sidebar-title">🛡️ InsightFoundry</p>', unsafe_allow_html=True)
+        # 🛡️ 蓝色盾牌图标与标题
+        st.markdown('<p class="sidebar-title">🛡️ Data Configuration</p>', unsafe_allow_html=True)
         st.caption("SC6117 Capstone Project")
         
         if api_key: st.success("✅ API Connected")
         else: st.error("❌ API Missing")
         
         st.divider()
-        st.subheader("📂 Market Data")
+        
+        # 数据集选择逻辑
         data_dir = "data"
+        output_dir = "output"
         try:
             all_files = [f for f in os.listdir(data_dir) if f.endswith('.csv') and 'comments' in f]
-            search_query = st.text_input("🔍 Search Product", placeholder="例如：大疆...")
+            search_query = st.text_input("🔍 Search Product", placeholder="输入产品关键词...")
             filtered_files = [f for f in all_files if search_query.lower() in f.lower()]
             
             if filtered_files:
@@ -91,121 +96,100 @@ def main():
                 comments_file = selected_file
                 contents_file = selected_file.replace('comments', 'contents')
             else:
-                st.warning("No matches found")
+                st.warning("No data found.")
                 st.stop()
         except Exception as e:
-            st.error(f"Error loading data dir: {e}")
+            st.error(f"Data directory error: {e}")
             st.stop()
 
     # --- 4. 页面中心标题 ---
     st.markdown('<h1 class="main-title">InsightFoundry AI</h1>', unsafe_allow_html=True)
     st.markdown('<p class="sub-title">Evidence-Based Startup Ideation & Market Grounding Engine</p>', unsafe_allow_html=True)
 
-    # --- 5. 数据准备 ---
+    # --- 5. 数据加载 ---
     loader = DataLoader(data_dir=data_dir)
     contents_df, comments_df = loader.load_data(comments_file, contents_file)
-    analyzer = Analyzer(comments_df)
-    pain_points = analyzer.get_pain_points(limit=20)
-    stats = analyzer.get_stats()
+    
+    # 加载分析结果
+    report_path = os.path.join(output_dir, "analyzer.json")
+    if os.path.exists(report_path):
+        with open(report_path, 'r', encoding='utf-8') as f:
+            report_data = json.load(f)
+        key_findings = report_data.get('key_findings', [])
+        total_voices = report_data.get('total_comments', len(comments_df))
+    else:
+        key_findings = []
+        total_voices = len(comments_df)
 
     # --- 6. 标签页设计 ---
     tab_insight, tab_generator = st.tabs([
-        "📊 Market Insights (Grounding)", 
+        "📊 Market Insights", 
         "💡 Founder AI Assistant"
     ])
 
-    # === TAB 1: 市场洞察页 ===
+    # === TAB 1: 市场洞察 ===
     with tab_insight:
-        # 指标展示：应用了卡片背景和加粗样式
+        # 指标展示：已加深灰色调
         c1, c2, c3 = st.columns(3)
-        with c1: st.metric("Total Voices Analyzed", stats['total_comments'])
-        with c2: st.metric("Unique Pain Points", len(pain_points))
-        with c3: st.metric("Validation Engagement", f"{sum([p['likes'] for p in pain_points])} 👍")
+        with c1: st.metric("Total Voices Analyzed", total_voices)
+        with c2: st.metric("Unique Pain Points", len(key_findings) if key_findings else "Pending")
+        with c3: st.metric("User Engagement", f"{comments_df['like_count'].sum()} 👍")
         
         st.divider()
 
-        # 左右布局
         col_viz, col_data = st.columns([1.2, 1], gap="large")
 
         with col_viz:
-            st.markdown("### 🎨 Market Sentiment Analysis")
-            st.info("🎨 [ECharts 占位] 此处将展示雷达图 (维度得分)")
-            st.info("☁️ [WordCloud 占位] 此处将展示词云图 (高频吐槽词)")
+            st.markdown("### 📈 Visualized Trends")
+            trend_img = os.path.join(output_dir, "daily_comment_trend.png")
+            loc_img = os.path.join(output_dir, "top_locations.png")
             
-            st.markdown("""
-                <div style="height: 350px; background-color: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 15px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-style: italic;">
-                    Data Visualization Module Integration
-                </div>
-            """, unsafe_allow_html=True)
+            if os.path.exists(trend_img):
+                st.image(trend_img, use_container_width=True)
+            if os.path.exists(loc_img):
+                st.image(loc_img, use_container_width=True)
+            else:
+                st.info("Market analysis visuals not found in output directory.")
 
         with col_data:
-            st.markdown("### 🔍 Evidence: User Voice")
-            sub_search = st.text_input("🔎 Filter keywords within comments", placeholder="搜索具体内容...")
-            
-            df_display = pd.DataFrame(pain_points)[['content', 'likes', 'user']]
-            if sub_search:
-                df_display = df_display[df_display['content'].str.contains(sub_search, case=False)]
-            
-            st.dataframe(
-                df_display,
-                column_config={
-                    "content": st.column_config.TextColumn("User Complaint", width="large"),
-                    "likes": st.column_config.NumberColumn("Likes", format="%d 👍")
-                },
-                use_container_width=True,
-                height=500
-            )
+            st.markdown("### 🔍 Key Findings (AI Extraction)")
+            if key_findings:
+                for finding in key_findings:
+                    with st.expander(f"🔴 {finding['aspect']} (Severity: {finding['sentiment_score']})"):
+                        st.write(f"**Summary:** {finding['summary']}")
+                        st.markdown("**Evidence (Top Comments):**")
+                        for comment in finding.get('top_representative_comments', []):
+                            st.caption(f"💬 \"{comment}\"")
+            else:
+                st.warning("No analysis report found. Ensure analyzer.py has run.")
 
-    # === TAB 2: AI 生成页 (Pitch Deck) ===
+    # === TAB 2: AI 生成器 ===
     with tab_generator:
         st.markdown("### 🤖 GenAI Founder Strategic Assistant")
         st.write("Generating a high-impact startup concept grounded in the validated facts.")
         
-        gen_col_left, gen_col_right = st.columns([1, 2], gap="medium")
+        gen_col_1, gen_col_2 = st.columns([1, 2], gap="medium")
         
-        with gen_col_left:
+        with gen_col_1:
             st.markdown("#### Action Center")
             if st.button("🚀 Run AI Ideation", type="primary", use_container_width=True):
                 if not api_key:
-                    st.error("Missing API Key")
+                    st.error("Please configure API Key in .env first.")
                 else:
                     with st.spinner("AI is analyzing market gaps..."):
                         gen = Generator()
-                        
-                        # --- 修复代码开始 ---
-                        # 检查当前 generator.py 到底支持哪个函数
-                        if hasattr(gen, 'generate_idea'):
-                            # 如果是旧版逻辑
-                            result = gen.generate_idea(pain_points)
-                        elif hasattr(gen, 'generate_pitch_from_json'):
-                            # 如果是新版 JSON 逻辑，但你现在只有 DataFrame
-                            # 暂时用一个简单的提示，或者引导它使用旧逻辑
-                            st.warning("Detection: New JSON-based Generator found. Reverting to compatibility mode...")
-                            # 强制定义一个临时兼容函数，或直接联系组员统一接口
-                            result = "Error: Generator interface mismatch. Please check generator.py function names."
-                        else:
-                            result = "Error: No valid generation method found in generator.py"
-                        # --- 修复代码结束 ---
-                        
+                        # 注意：此处优先使用 analyzer 提取的高质量 key_findings
+                        result = gen.generate_idea(key_findings if key_findings else [])
                         st.session_state['final_pitch'] = result
 
-        with gen_col_right:
+        with gen_col_2:
             if 'final_pitch' in st.session_state:
                 st.success("Targeted Business Concept Generated")
                 st.markdown(st.session_state['final_pitch'])
                 st.divider()
-                st.download_button(
-                    label="📥 Download Pitch Draft (.md)", 
-                    data=st.session_state['final_pitch'], 
-                    file_name="startup_plan.md"
-                )
+                st.download_button("📥 Download Pitch (.md)", st.session_state['final_pitch'], file_name="startup_plan.md")
             else:
-                st.markdown("""
-                <div style="height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #94a3b8; border: 1px solid #e2e8f0; border-radius: 15px;">
-                    <p style="font-size: 40px;">💡</p>
-                    <p>Ready to build? Click the button to generate your plan.</p>
-                </div>
-                """, unsafe_allow_html=True)
+                st.info("Click the button to generate your strategy.")
 
 if __name__ == "__main__":
     main()

@@ -6,54 +6,54 @@
     {
       "aspect": "Poor Customer Service and After-Sales Support",
       "sentiment_score": -0.95,
-      "summary": "Users report severe issues with customer service, including unresponsive support, delayed repairs, and dismissive attitudes. Complaints span multiple brands (e.g., Roborock, Ecovacs, Dreame), with users describing service as 'garbage' and 'nightmarish,' leading to frustration and regret over purchases.",
+      "summary": "Users report severe dissatisfaction with customer service across multiple brands, including DJI, Roborock, Ecovacs, and Dreame. Complaints include unresponsive or robotic-like support, lengthy repair times, refusal to honor warranties, and difficulty obtaining refunds or replacements. This is a critical pain point as it undermines trust and leaves users stranded with faulty products.",
       "top_representative_comments": [
         "科沃斯售后超级垃圾，千万不要买，一个产品连售后都处理不好，做一次性服务有什么用，垃圾！！！谁买谁后悔,不要给自己找麻烦，就不要买科沃斯！！！",
-        "售后不好，我的机器有异响，寄回去检测，说没问题，我说没问题为什么会有异响，客服回答是因为抓力强，真是一本正经的胡说八道"
+        "售后很垃圾…投诉他们天津的总公司人直接让政府回我不调节[失望R]以后不会买他们家了，卖方权利大于购买方"
       ]
     },
     {
       "aspect": "High Price and Rapid Depreciation",
       "sentiment_score": -0.9,
-      "summary": "Users criticize the product for being overpriced, especially compared to competitors with similar features. There is strong negative sentiment about rapid price drops shortly after launch, with reports of significant price reductions (e.g., from 6000 to 4000) within months, making early buyers feel cheated and devaluing the product.",
+      "summary": "Users criticize DJI ROMO and other high-end models for being overpriced compared to competitors with similar features. There is strong negative sentiment about rapid price drops shortly after launch, leaving early buyers feeling cheated. Comments highlight a lack of price protection and perceived low value for money, especially for transparent or premium versions.",
       "top_representative_comments": [
         "首发6000买的，[笑哭R]无力吐槽，两个月降2000",
-        "话说，这个不能做到把价格打下来，很失望[哭惹R]"
+        "落后一代的配置，顶流的价格，谁给的勇气"
       ]
     },
     {
-      "aspect": "Frequent Product Failures and Quality Issues",
+      "aspect": "Product Quality and Reliability Issues",
       "sentiment_score": -0.85,
-      "summary": "Numerous complaints about product malfunctions, such as machines breaking within days, getting stuck, failing to return to base, or having hardware defects (e.g., wheels locking, sensors failing). Users express disappointment with reliability, describing products as 'garbage' and prone to frequent repairs.",
+      "summary": "Numerous complaints about frequent malfunctions, breakdowns, and design flaws across brands like DJI, Dreame, Ecovacs, and Roborock. Issues include robots getting stuck, failing to return to base, sensor errors, and components breaking quickly. Users express frustration with high failure rates and the need for constant repairs, undermining the product's purpose of convenience.",
       "top_representative_comments": [
         "千万别买追觅 很垃圾 x40proultra超薄版，顶配，1天就坏!!!而且售后非常艰辛!!!大家千万避雷",
-        "今天刚开启百亿补贴，又降价了550，还无法保价[石化R]"
+        "质量是真不好 我家买回来经历了数次上门维修以及返厂维修"
       ]
     },
     {
-      "aspect": "Ineffective Cleaning Performance",
+      "aspect": "Ineffective Cleaning and Performance Deficiencies",
       "sentiment_score": -0.8,
-      "summary": "Users report that the product does not clean effectively, with issues like leaving water stains, failing to pick up debris, or not reaching corners. Complaints include poor obstacle avoidance (e.g., dragging pet waste), slow cleaning times, and general dissatisfaction with cleanliness compared to manual methods.",
+      "summary": "Users report that robots fail to clean effectively, leaving dirt, hair, or water stains. Specific complaints include poor edge cleaning, inability to handle pet hair or liquids, and slow cleaning times. There is skepticism about marketing claims versus real-world performance, with some noting that basic functions are not adequately executed.",
       "top_representative_comments": [
-        "早退了我，这东西拖不干净呀，不是活水，还有就是你用洗地机拖干净了，用这个机器人维护，就是脱裤子放屁[笑哭R]",
-        "这个好用还是石头好用"
+        "地都扫不干净？那还留着干啥",
+        "拖不干净跟使用模式也有关系，可以问问客服"
       ]
     },
     {
-      "aspect": "Excessive Marketing and Misleading Reviews",
+      "aspect": "Excessive Noise and Long Operation Times",
       "sentiment_score": -0.75,
-      "summary": "Users express frustration with overwhelming marketing and sponsored content, making it difficult to discern genuine reviews from advertisements. This leads to distrust in product recommendations and a sense of being misled by exaggerated claims, with comments highlighting the prevalence of 'paid promotions' and lack of authentic feedback.",
+      "summary": "Criticism focuses on robots being too loud during operation, disturbing households, especially with children or pets. Additionally, many users complain about excessively long cleaning cycles, with some tasks taking hours to complete. This reduces usability and convenience, as the noise and duration become disruptive rather than helpful.",
       "top_representative_comments": [
-        "营销太严重了，还有商家互相刷差评，一群大人夸大购物体验，真的太难了。我现在买东西完全靠从朋友和自己总结，不再相信这些博主的推荐了。我现在已经失去辨别的能力了[笑哭R][笑哭R]",
-        "那叫推广，不叫测评"
+        "石头工作时太吵了，小孩在家都不敢用",
+        "12平扫了一个半小时...怎么那么慢啊[哭惹R]"
       ]
     }
   ],
   "hot_threads": [
     {
-      "topic": "Comparison and recommendations for new robotic vacuum cleaner models during the 618 shopping festival, focusing on brands like Roborock, Dreame, Ecovacs, and Narwal.",
+      "topic": "Comparison and recommendations for robot vacuum cleaner models during the 618 shopping festival, focusing on brands like Roborock, Dreame, Ecovacs, and Narwal.",
       "controversy_level": "Low",
-      "thread_summary": "The original poster provides a detailed comparison and recommendations for four specific robotic vacuum cleaner models (Roborock P10s Pro, Dreame S30 Pro Ultra, Dreame X40 Pro, and Ecovacs T30 Pro) during the 618 shopping festival, aiming to help users avoid pitfalls. The post includes timestamps for model discussions and is tagged with numerous relevant hashtags. No user comments are available, so community reaction cannot be assessed, but the content appears informative and non-controversial, focusing on product features and recommendations.",
+      "thread_summary": "The original poster provides a detailed comparison and recommendations for four robot vacuum cleaner models (Roborock P10s Pro, Dreame S30 Pro Ultra, Dreame X40 Pro, Ecovacs T30 Pro) with timestamps for specific model discussions. The post is promotional in nature, aiming to guide purchases during the 618 shopping event. No user comments are provided, so there is no visible community reaction, complaints, or arguments.",
       "note_id": "660301110000000012022277"
     },
     {
